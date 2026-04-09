@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((post) => post.data.tags.includes(tag))
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title={`Posts tagged "${tag}"`} description={`All posts tagged "${tag}".`}>
+  <section class="tag-page">
+    <h1>Tagged: {tag}</h1>
+    {posts.map((post) => {
+      const formattedDate = post.data.date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+      return (
+        <article class="post-entry">
+          <a href={`${base}/posts/${post.id}/`} class="post-entry-link">
+            <h2>{post.data.title}</h2>
+          </a>
+          <div class="post-entry-meta">
+            <span>{post.data.author}</span>
+            <span>{formattedDate}</span>
+          </div>
+          <p class="post-entry-description">{post.data.description}</p>
+        </article>
+      );
+    })}
+  </section>
+
+  <style>
+    .tag-page {
+      max-width: var(--content-width);
+      margin: 2rem auto;
+    }
+
+    .tag-page h1 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .post-entry {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .post-entry:last-child {
+      border-bottom: none;
+    }
+
+    .post-entry-link {
+      text-decoration: none;
+    }
+
+    .post-entry-link h2 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--color-text);
+      margin-bottom: 0.3rem;
+    }
+
+    .post-entry-link:hover h2 {
+      color: var(--color-text-secondary);
+    }
+
+    .post-entry-meta {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .post-entry-description {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+  </style>
+</Base>
