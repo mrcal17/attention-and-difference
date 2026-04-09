@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About" description="About Attention and Difference — who we are and why we write.">
+  <section class="about">
+    <h1>About</h1>
+    <p>
+      <strong>Attention and Difference</strong> is a blog about the ethics and philosophy of artificial intelligence. We write about fairness, interpretability, governance, and the people these systems affect.
+    </p>
+    <p>
+      We are two writers who spend most of our days arguing about these questions anyway. This is the written version of those arguments — refined, cited, and made public.
+    </p>
+    <p>
+      Some posts are technical. Some are philosophical. Most are both. We believe that clear thinking about AI requires both the math and the meaning.
+    </p>
+    <h2>The name</h2>
+    <p>
+      "Attention and Difference" is a nod to two sources: the transformer architecture's attention mechanism, introduced in the 2017 paper "Attention Is All You Need," and Gilles Deleuze's <em>Difference and Repetition</em>. If the title reads differently on each visit, that's the point.
+    </p>
+  </section>
+
+  <style>
+    .about {
+      max-width: var(--content-width);
+      margin: 2rem auto;
+    }
+
+    .about h1 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about h2 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 1.4rem;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .about p {
+      margin-bottom: 1.25rem;
+      line-height: var(--line-height);
+    }
+  </style>
+</Base>
