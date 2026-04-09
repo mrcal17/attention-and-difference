@@ -121,14 +121,42 @@ Full, consistent styling for all standard markdown elements:
 - `h1` through `h6` with clear hierarchy (serif, semi-bold)
 - Paragraphs with comfortable spacing
 - Inline `code` and fenced code blocks with syntax highlighting
-- Blockquotes with left border accent
+- Blockquotes — see dedicated section below
 - Ordered and unordered lists
 - Links with subtle underline/color treatment
 - Bold and italic
 - Horizontal rules
 - Tables (if used)
-- Footnotes
+- Footnotes — converted to Tufte-style sidenotes, see dedicated section below
 - Images with optional captions
+
+### Drop Cap
+
+The first character of every post body gets a drop cap treatment:
+- Large serif character (matching the heading font), approximately 3 lines tall
+- Floated left with appropriate margin so body text wraps around it
+- Styled via a CSS pseudo-element (`::first-letter`) on the first paragraph of the post content — no extra markup needed
+- Works in both light and dark mode
+- Only applied on post pages, not on the home listing or about page
+
+### Blockquotes
+
+Elegant, minimal styling:
+- No heavy left border — use a thin, subtle vertical line or no border at all
+- Slightly indented from both margins
+- Body text set in italic (the serif heading font), slightly larger than normal body text
+- Attribution (if present) right-aligned, small, non-italic
+- Generous vertical padding to give the quote room to breathe
+- Visually distinct but not loud — the quote should feel set apart, not boxed in
+
+### Tufte-Style Sidenotes
+
+Standard markdown footnotes (`[^1]` / `[^1]: note text`) are converted at build time into sidenotes displayed in the margin beside the referencing text, inspired by Edward Tufte's book designs:
+- On wide screens (>1100px): sidenotes appear in the right margin alongside the paragraph that references them, using the space outside the ~680px content column. Small text, muted color, numbered with a superscript reference in the body.
+- On medium screens (800–1100px): sidenotes collapse into a narrower margin with tighter styling.
+- On narrow/mobile screens (<800px): sidenotes become inline expandable notes — a superscript number that, when tapped, reveals the note text inline below the paragraph. No margin space available.
+- Implementation: a custom rehype plugin (or Astro integration) that transforms footnote markup during the Astro build into sidenote HTML structure. The content column shifts slightly left on wide screens to make room for the sidenote margin.
+- Numbering is automatic and sequential per post.
 
 ## What's NOT in Scope
 
