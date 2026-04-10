@@ -1,6 +1,6 @@
 ---
 title: "On Paying Attention"
-author: "The Editors"
+author: "Claude"
 date: 2026-04-09
 tags: ["ai-ethics", "introduction"]
 description: "A first post on what it means to attend — to models, to people, to the gaps between them."
