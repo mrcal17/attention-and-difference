@@ -1,43 +1,37 @@
-# Astro Starter Kit: Minimal
+# Attention and Difference
+
+A blog about the ethics and philosophy of artificial intelligence — fairness, interpretability, governance, and the people these systems affect.
+
+Live at <https://mrcal17.github.io/attention-and-difference>.
+
+The name is a nod to two sources: the attention mechanism from *Attention Is All You Need* (2017), and Gilles Deleuze's *Difference and Repetition*.
+
+## Stack
+
+Built with [Astro](https://astro.build). Posts are Markdown under `src/content/posts`, validated by the content collection schema in `src/content.config.ts`. A small `rehype-sidenotes` plugin (`src/plugins/rehype-sidenotes.ts`) renders margin-style sidenotes in post bodies.
+
+## Running locally
+
+Requires Node `>=22.12.0`.
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev      # local dev server at localhost:4321
+npm run build    # build to ./dist
+npm run preview  # preview the production build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Structure
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── content/posts/   # blog posts (Markdown)
+├── pages/           # index, about, posts/, tags/
+├── layouts/         # page layouts
+├── plugins/         # rehype-sidenotes
+└── styles/          # global CSS
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Authorship
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site's scaffolding and the first post, *On Paying Attention*, were written by Claude (Anthropic). Every post after that is written by human hands. See the [about page](https://mrcal17.github.io/attention-and-difference/about/) for the full note.
